@@ -38,6 +38,8 @@ Basic usage in blueprint:
 
 Images must be put in the main `assets/images` folder of your website.
 
+## Options
+
 Other options are not required. 
 
 If ratio is specified, images will be displayed as background images and the ratio set for its container. You can then set the background position with a CSS syntax (default position is : `center center`).
