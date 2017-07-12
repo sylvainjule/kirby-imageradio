@@ -1,0 +1,18 @@
+/* line 1, /Users/Sylvain/Documents/0--Dev/1-radiofield/site/fields/illustratedradio/assets/css/styles.scss */
+.radio-illustration {
+  width: calc(100% + 1em);
+  margin: -.5em 0 .5em -.5em;
+  border-bottom: 1px solid #f7f7f7; }
+  /* line 6, /Users/Sylvain/Documents/0--Dev/1-radiofield/site/fields/illustratedradio/assets/css/styles.scss */
+  .radio-illustration.as-background {
+    background-size: cover; }
+  @media (max-width: 960px) {
+    /* line 10, /Users/Sylvain/Documents/0--Dev/1-radiofield/site/fields/illustratedradio/assets/css/styles.scss */
+    .radio-illustration.mobile-disabled {
+      display: none; } }
+  /* line 16, /Users/Sylvain/Documents/0--Dev/1-radiofield/site/fields/illustratedradio/assets/css/styles.scss */
+  .radio-illustration img {
+    display: block;
+    width: 100%; }
+
+/*# sourceMappingURL=styles.css.map */
