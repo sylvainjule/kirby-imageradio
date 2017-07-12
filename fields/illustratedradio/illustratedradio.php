@@ -65,7 +65,7 @@ class IllustratedRadioField extends InputField {
         $imageurl = kirby()->urls()->assets() .'/images/'. $image;
 
         // Get mobile status if specified | default : false
-        $mobile = $this->mobile() ? $this->position() : false;
+        $mobile = $this->mobile() ? $this->mobile() : false;
         $mobileClass = $mobile ? '' : ' mobile-disabled';
         
         // Go with an img tag if there's no ratio specified
