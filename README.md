@@ -1,4 +1,4 @@
-# Kirby Illustrated radio
+# Kirby Illustrated Radio
 
 This field allows you to add illustrations to radio buttons.
 Advices and suggestions welcome.
@@ -42,7 +42,7 @@ Images must be put in the main `assets/images` folder of your website.
 
 Other options are not required. 
 
-If ratio is specified, images will be displayed as background images and the ratio set for its container. You can then set the background position with a CSS syntax (default position is : `center center`).
+If `ratio` is specified, images will be displayed as background images and the ratio set for its container. You can then set the background position with a CSS syntax (default position is : `center center`).
 ```yaml
   fieldname:
     (...)
@@ -52,7 +52,7 @@ If ratio is specified, images will be displayed as background images and the rat
       (...)
 ```
 
-Images are not displayed when the panel switches to its mobile view. If you want to override this, set :
+By default, images are not displayed when the panel switches to its mobile view. If you want to override this, set :
 ```yaml
     mobile: true
 ```
