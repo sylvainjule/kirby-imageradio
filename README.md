@@ -3,7 +3,7 @@
 This field allows you to add illustrations to radio buttons.
 Advices and suggestions welcome.
 
-
+![illustrated-radio](https://user-images.githubusercontent.com/14079751/28130554-5edcff2e-6737-11e7-8714-1a82299ede4e.jpg)
 
 ## Installation
 Put this field in the `site/fields` directory.  
@@ -56,3 +56,7 @@ Images are not displayed when the panel switches to its mobile view. If you want
 ```yaml
     mobile: true
 ```
+
+## License
+
+MIT
