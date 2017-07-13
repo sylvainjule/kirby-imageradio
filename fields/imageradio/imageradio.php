@@ -1,6 +1,6 @@
 <?php
 
-class IllustratedRadioField extends InputField {
+class ImageradioField extends InputField {
 
     static public $assets = array(
         'css' => array(
