@@ -18,6 +18,7 @@ The field folder must be named `imageradio` :
 ## Usage
 
 Basic usage in blueprint:
+
 ```yaml
   fieldname:
     label: Field label
@@ -44,6 +45,7 @@ Other options are not required.
 ### Custom ratio
 
 If `ratio` is specified, images will be displayed as background images and the ratio set for its container. You can then set the background position with a CSS syntax (not mandatory, default position is : `center center`).
+
 ```yaml
   fieldname:
     label: Field label
@@ -59,6 +61,7 @@ If `ratio` is specified, images will be displayed as background images and the r
 ### Enable for mobiles
 
 By default, images are not displayed when the panel switches to its mobile view. If you want to override this, set :
+
 ```yaml
     display:
       mobile: true
@@ -86,6 +89,28 @@ The appropriate syntax is then :
         label: '{{filename}}'
         image: '{{filename}}'
 ```
+
+### Use color instead of image
+
+You can choose to use a background-color instead of an image. In this case, `ratio` should be specified (fallback is 4/1).
+
+```yaml
+fieldname:
+    label: Field label
+    type: imageradio
+    columns: 2
+    display:
+      ratio: 5/1
+    options:
+      light:
+        label: Light theme
+        color: '#f0f0f0'
+      dark:
+        label: Dark theme
+        color: '#0f0f0f'
+```
+
+
 
 ## License
 
