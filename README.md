@@ -6,7 +6,7 @@ This field allows you to add illustrations to radio buttons. Suggestions welcome
 
 ## Installation
 Put this field in the `site/fields` directory.  
-The field folder must be named `illustratedradio` :
+The field folder must be named `imageradio` :
 
 ```
 |-- site/fields/
