@@ -68,7 +68,7 @@ By default, images are not displayed when the panel switches to its mobile view.
 
 You can query images from existing pages to populate the buttons.
 
-Please note that `fetch` **must** be set to `images` for this to work properly.
+Please note that `fetch` **must** be set to `images` in order for this to work properly.
 
 The appropriate syntax is then :
 
