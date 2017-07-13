@@ -1,4 +1,4 @@
-# Kirby Illustrated Radio
+# Imageradio - Illustrated Radio
 
 This field allows you to add illustrations to radio buttons. Suggestions welcome.
 
@@ -10,9 +10,9 @@ The field folder must be named `illustratedradio` :
 
 ```
 |-- site/fields/
-    |-- illustratedradio/
+    |-- imageradio/
         |-- assets/
-        |-- illustratedradio.php
+        |-- imageradio.php
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ Basic usage in blueprint:
 ```yaml
   fieldname:
     label: Field label
-    type: illustratedradio
+    type: imageradio
     columns: 3
     options: 
       light:
@@ -47,7 +47,7 @@ If `ratio` is specified, images will be displayed as background images and the r
 ```yaml
   fieldname:
     label: Field label
-    type: illustratedradio
+    type: imageradio
     columns: 3
     display:
       ratio: 3/2
@@ -75,7 +75,7 @@ The appropriate syntax is then :
 ```yaml
   fieldname:
     label: Field label
-    type: illustratedradio
+    type: imageradio
     columns: 3
     options: query
     query:
