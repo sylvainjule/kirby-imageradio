@@ -51,8 +51,8 @@ class IllustratedRadioField extends InputField {
 
         return $this->cache = fieldoptions::build($this);
     }
-    
-    
+
+
     public function item($value, $options) {
 
         $input = $this->input($value);
@@ -60,23 +60,65 @@ class IllustratedRadioField extends InputField {
         // Get label and filename of the input
         $text = $options['label'];
         $image = $options['image'];
+        $display = $this->display();
         
-        // Find image url
-        $imageurl = kirby()->urls()->assets() .'/images/'. $image;
-
-        // Get mobile status if specified | default : false
-        $mobile = $this->mobile() ? $this->mobile() : false;
+        
+        /* Get image URL
+        ----------------------------*/
+        
+        // If a query is made about images, set parent directory as page URI or 'page' option 
+        if ($this->query() && $this->query()['fetch'] == 'images') {
+            
+            $query = $this->query();
+            
+            // If there is a 'page' options -> Get the page URI
+            if (array_key_exists('page', $query)) {
+                $uri = $this->getPage($query['page'])->uri();
+            } 
+            // If there is no 'page' option -> Get the current page URI
+            else {
+                $uri = $this->page()->uri();
+            }
+            
+            $imageurl = kirby()->urls->index() . '/' . $uri . '/' . $image;
+        }
+        // Otherwise, image is to be found in the main assets/images folder
+        else {
+            $imageurl = kirby()->urls()->assets() .'/images/'. $image;
+        }
+        
+        
+        /* Mobile option
+        ----------------------------*/
+        
+        // default : false
+        $mobile = false;
+        
+        // Get mobile option if specified
+        if ($display && array_key_exists('mobile', $display)) {
+            $mobile = $display['mobile'];
+        }
+        
         $mobileClass = $mobile ? '' : ' mobile-disabled';
         
+        
+        /* If there is no ratio
+        ----------------------------*/
+        
         // Go with an img tag if there's no ratio specified
-        if (!$this->ratio()) {
+        if (!$display || !array_key_exists('ratio', $display)) {
             $imageDiv = '<img src="'. $imageurl .'">';
             $imageDiv = '<div class="radio-illustration'. $mobileClass .'">'. $imageDiv .'</div>';
         }
-        // Otherwise, set the image as background
-        else {
+        
+        
+        /* If there is a ratio
+        ----------------------------*/
+        
+        if ($display && array_key_exists('ratio', $display)) {
+            
             // Get and convert ratio (3/2 -> 66.6%)
-            $ratio = $this->ratio();
+            $ratio = $display['ratio'];
             $convertedRatio = 1;
             
             if (preg_match('/(\d+)(?:\s*)([\/])(?:\s*)(\d+)/', $ratio, $matches) !== false){
@@ -88,12 +130,15 @@ class IllustratedRadioField extends InputField {
             $ratio = $convertedRatio;
             
             // Get position if specified | default : centered
-            $position = $this->position() ? $this->position() : 'center center';
+            $position = array_key_exists('position', $display) ? $display['position'] : 'center center';
             
             $imageDiv = '<div class="radio-illustration as-background'. $mobileClass .'" style="background-image: url('. $imageurl .'); background-position: '. $position .'; padding-top: '. $ratio .'%;"></div>';
+            
         }
         
-
+        
+        /* Build the input
+        ----------------------------*/
         
         $label = new Brick('label');
         $label->addClass('input');
@@ -109,6 +154,35 @@ class IllustratedRadioField extends InputField {
 
         return $label;
 
+    }
+    
+    public function getPage($uri) {
+        
+        if(str::startsWith($uri, '../')) {
+            
+            if($currentPage = $this->page) {
+                $path = $uri;
+                while(str::startsWith($path, '../')) {
+                    if($parent = $currentPage->parent()) {
+                        $currentPage = $parent;
+                    } else {
+                        $currentPage = site();
+                    }
+                    $path = str::substr($path, 3);
+                }
+                if(!empty($path)) {
+                    $currentPage = $currentPage->find($path);
+                }
+                $page = $currentPage;
+            } else {
+                $page = null;
+            }
+        } else if($uri == '/') {
+            $page = site();
+        } else {
+            $page = page($uri);
+        }
+        return $page;
     }
     
     public function content() {
