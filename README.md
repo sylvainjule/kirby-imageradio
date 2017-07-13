@@ -1,4 +1,4 @@
-# Imageradio - Illustrated Radio
+# Imageradio - Kirby illustrated radio
 
 This field allows you to add illustrations to radio buttons. Suggestions welcome.
 
