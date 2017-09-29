@@ -1,7 +1,7 @@
 {
 	"name": "imageradio",
 	"description": "Add illustrations to radio buttons",
-	"author": "Sylvain Jule",
+	"author": "Sylvain Julé",
 	"version": "1.0.0",
 	"type": "kirby-field",
 	"license": "MIT",
