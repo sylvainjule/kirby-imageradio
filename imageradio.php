@@ -147,20 +147,21 @@ class ImageradioField extends InputField {
 
                 $query = $this->query();
 
-                // If there is a 'page' options -> Get the page URI
+                // If there is a 'page' options -> Get the page
                 if (array_key_exists('page', $query)) {
-                    $uri = $this->getPage($query['page'])->uri();
+                    $page = $this->getPage($query['page']);
                 } 
-                // If there is no 'page' option -> Get the current page URI
+                // If there is no 'page' option -> Get the current page
                 else {
-                    $uri = $this->page()->uri();
+                    $page = $this->page();
                 }
 
-                $imageurl = kirby()->urls->index() . '/' . $uri . '/' . $image;
+                $imageurl = $page->files()->find($image)->resize(400)->url();
             }
             // Otherwise, image is to be found in the main assets/images folder
             else {
-                $imageurl = kirby()->urls()->assets() .'/images/'. $image;
+            	$image = new Media ($kirby->roots()->assets() .'/images/'. $image, $kirby->urls()->assets() .'/images/'. $image);
+                $imageurl = $image->resize(400)->url();
             }
 
             /* Build the DIV
