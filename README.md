@@ -1,117 +1,135 @@
-# Imageradio - Kirby illustrated radio
+# Kirby illustrated radios
 
-This field allows you to add illustrations to radio buttons. Suggestions welcome.
+Add illustrations to radio buttons.
 
-![illustrated-radio](https://user-images.githubusercontent.com/14079751/28130554-5edcff2e-6737-11e7-8714-1a82299ede4e.jpg)
+![cover](https://user-images.githubusercontent.com/14079751/48334055-a769b280-e659-11e8-828a-09aad54ddd9f.jpg)
 
-## Installation
-Put this field in the `site/fields` directory.  
-The field folder must be named `imageradio` :
+<br/>
 
-```
-|-- site/fields/
-    |-- imageradio/
-        |-- assets/
-        |-- imageradio.php
-```
+## Overview
 
-## Usage
+- [1. Installation](#1-installation)
+- [2. Setup](#2-setup)
+  * [2.1. Hardcoded options](#21-hardcoded-options)
+  * [2.2. Dynamic options](#22-dynamic-options)
+- [3. Options](#3-options)
+- [4. License](#4-license)
 
-Basic usage in blueprint:
+<br/>
 
-```yaml
-  fieldname:
-    label: Field label
-    type: imageradio
-    columns: 3
-    options: 
-      light:
-        label: Light theme
-        image: light.jpg
-      dark:
-        label: Dark theme
-        image: dark.jpg
-      blue:
-        label: Blue theme
-        image: blue.jpg
-```
+## 1. Installation
 
-By default, images must be put in the main `assets/images` folder of your website.
+Download and copy this repository to ```/site/plugins/imageradio```
 
-## Options
+Alternatively, you can install it with composer: ```composer require sylvainjule/imageradio```
 
-Other options are not required. 
+<br/>
 
-### Custom ratio
+## 2. Setup
 
-If `ratio` is specified, images will be displayed as background images and the ratio set for its container. You can then set the background position with a CSS syntax (not mandatory, default position is : `center center`).
+The field is best used with the `columns` option set.
+
+#### 2.1. Hardcoded options
+
+If the field's options are hardcoded, images need to be placed in the `assets/images` folder of your installation.
+
+The `image` value must be a filename, the field will automatically prefix it with the correct path.
 
 ```yaml
-  fieldname:
-    label: Field label
-    type: imageradio
-    columns: 3
-    display:
-      ratio: 3/2
-      position: top left
-    options:
-      (...)
+myimageradio:
+  label: Pick a theme
+  type: imageradio
+  columns: 3
+  options:
+    light:
+      text: Light theme
+      image: light.jpg
+    dark:
+      text: Dark theme
+      image: dark.jpg
+    blue:
+      text: Blue theme
+      image: blue.jpg
 ```
 
-### Enable for mobiles
+#### 2.2. Dynamic options
 
-By default, images are not displayed when the panel switches to its mobile view. If you want to override this, set :
+The field is compatible with both `query` and `api` fetch. You need to explicitely set the result text, stored value and image url.
+
+The `image` value must return **an absolute url**.
 
 ```yaml
-    display:
-      mobile: true
+myimageradio:
+  label: Pick a theme
+  type: imageradio
+  columns: 3
+  options: query
+  query:
+    fetch: page.images
+    text: "{{ file.filename }}"
+    value: "{{ file.id }}"
+    image: "{{ file.resize(512).url }}"
 ```
 
-### Fetch images
+Notice the `{{ file.resize(512).url }}` instead of `{{ file.url }}`. Two reasons for this:
 
-You can query images from existing pages to populate the buttons.
+- Using a thumb url will prevent loading unnecessarily large images.
+- `512` is the default value of the Files field's thumbs. Therefore it is likely that the thumb will have already been created. 
 
-Please note that `fetch` **must** be set to `images` in order for this to work properly.
+I recommend using a `resize` number [already used](https://github.com/k-next/kirby/blob/a709a5728671c0b85a1f37db1d6b2a028151f013/config/api/models/File.php) by the panel (128, 256, 512, 768, 1024).
 
-The appropriate syntax is then :
+<br/>
+
+## 3. Options
+
+#### 3.1. `ratio`
+
+![ratio](https://user-images.githubusercontent.com/14079751/48334059-a769b280-e659-11e8-8195-9aa68da30091.jpg)
+
+The ratio of the image container, to be adjusted depending on your images. Default is `1/1`.
 
 ```yaml
-  fieldname:
-    label: Field label
-    type: imageradio
-    columns: 3
-    options: query
-    query:
-      page: path/to/page
-      fetch: images
-      value: '{{filename}}'
-      text: 
-        label: '{{filename}}'
-        image: '{{filename}}'
+myimageradio:
+  type: imageradio
+  ratio: 1/1
 ```
 
-### Use color instead of image
+#### 3.2. `fit`
 
-You can choose to use a background-color instead of an image. In this case, `ratio` should be specified (fallback is 4/1).
+![fit](https://user-images.githubusercontent.com/14079751/48334056-a769b280-e659-11e8-897a-53e371c22026.jpg)
+
+Defines how the image should fit within its container, either `contain` or `cover`. Default is `cover`.
 
 ```yaml
-fieldname:
-    label: Field label
-    type: imageradio
-    columns: 2
-    display:
-      ratio: 5/1
-    options:
-      light:
-        label: Light theme
-        color: '#f0f0f0'
-      dark:
-        label: Dark theme
-        color: '#0f0f0f'
+myimageradio:
+  type: imageradio
+  fit: cover
 ```
 
+#### 3.3. `mobile`
 
+By default, images are not displayed when the panel switches to its mobile view. Not recommended, but if you want to override this, set the option to `true`.
 
-## License
+```yaml
+myimageradio:
+  type: imageradio
+  mobile: false
+```
+
+#### 3.4. `gap`
+
+![gap](https://user-images.githubusercontent.com/14079751/48334057-a769b280-e659-11e8-95f8-175cbee67088.jpg)
+
+Whether the field should have a `1rem` gap between each input, K2-like. Default is `false`.
+
+```yaml
+myimageradio:
+  type: imageradio
+  gap: false
+```
+
+<br/>
+
+## 4. License
 
 MIT
