@@ -76,7 +76,7 @@ Notice the `{{ file.resize(512).url }}` instead of `{{ file.url }}`. Two reasons
 - Using a thumb url will prevent loading unnecessarily large images.
 - `512` is the default value of the Files field's thumbs. Therefore it is likely that the thumb will have already been created. 
 
-I recommend using a `resize` number [already used](https://github.com/k-next/kirby/blob/a709a5728671c0b85a1f37db1d6b2a028151f013/config/api/models/File.php) by the panel (128, 256, 512, 768, 1024).
+I recommend using a `resize` number [already used](https://github.com/k-next/kirby/blob/a709a5728671c0b85a1f37db1d6b2a028151f013/config/api/models/File.php#L86) by the panel (128, 256, 512, 768, 1024).
 
 <br/>
 
