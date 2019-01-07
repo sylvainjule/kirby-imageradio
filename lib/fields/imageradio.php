@@ -4,7 +4,7 @@ require_once dirname(__DIR__) . '/options/imageradio-optionsquery.php';
 require_once dirname(__DIR__) . '/options/imageradio-options.php';
 
 
-$base = require kirby()->root('kirby') . '/config/fields/radio.php';
+$base = require __DIR__ . '/../../../../../kirby/config/fields/radio.php';
 
 
 /* Merge new properties
