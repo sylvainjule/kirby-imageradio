@@ -91,7 +91,7 @@ class ImageRadioOptions extends Options {
 
         // resolve array query setup
         if (is_array($query) === true) {
-            $text  = $query['label']  ?? '{{ file.filename }}';
+            $text  = $query['text']  ?? '{{ file.filename }}';
             $value = $query['value'] ?? '{{ file.id }}';
             $image = $query['image'] ?? '{{ file.url }}';
             $query = $query['fetch'] ?? null;
