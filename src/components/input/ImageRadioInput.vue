@@ -33,7 +33,7 @@ export default {
     },
     computed: {
         padding() {
-            return 'padding-top:'+ this.$helper.ratio(this.ratio, 'auto', false)
+            return 'padding-top:'+ this.$helper.ratio(this.ratio, 'auto', true)
         },
     }
 }
