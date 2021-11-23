@@ -60,15 +60,17 @@ class ImageRadioOptions extends Options {
             return [];
         }
 
-        $assets = kirby()->url('assets') . '/images';
-        $result = [];
+        $baseUrl = option('sylvainjule.imageradio.baseUrl') ?? kirby()->url('assets') . '/images';
+        $baseUrl = $model->toString($baseUrl);
+        $baseUrl = rtrim($baseUrl, '/');
+        $result  = [];
 
         foreach ($options as $key => $option) {
             if (is_array($option) === false || isset($option['value']) === false) {
                 $option = [
                     'value' => is_int($key) ? $option : $key,
                     'text'  => $option['text'],
-                    'image' => $assets . '/' . $option['image'],
+                    'image' => $baseUrl . '/' . $option['image'],
                 ];
             }
             elseif (is_array($option) === false || isset($option['value']) === true) {

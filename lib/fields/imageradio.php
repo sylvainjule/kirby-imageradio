@@ -12,6 +12,9 @@ $base = require kirby()->root('kirby') . '/config/fields/radio.php';
 --------------------------------*/
 
 $base = array_merge_recursive($base, array(
+    'options' => array(
+        'baseUrl' => false,
+    ),
     'props' => array(
         'fit' => function($fit = 'cover') {
             return $fit;
