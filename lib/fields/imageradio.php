@@ -1,5 +1,6 @@
 <?php
 
+require_once dirname(__DIR__) . '/options/imageradio-optionsapi.php';
 require_once dirname(__DIR__) . '/options/imageradio-optionsquery.php';
 require_once dirname(__DIR__) . '/options/imageradio-options.php';
 

@@ -1,6 +1,7 @@
 <?php
 
 use Kirby\Form\Options;
+use Kirby\Cms\App;
 
 class ImageRadioOptions extends Options {
 	public static function api($api, $model = null): array {
@@ -18,7 +19,7 @@ class ImageRadioOptions extends Options {
         } else {
             $url = $api;
         }
-        $optionsApi = new OptionsApi([
+        $optionsApi = new ImageRadioOptionsApi([
             'data'  => static::data($model),
             'fetch' => $fetch,
             'url'   => $url,
