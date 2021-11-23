@@ -26,15 +26,6 @@ $base = array_merge_recursive($base, array(
             return $mobile;
         },
         'ratio' => function($ratio = '1/1') {
-        	$computed = 1;
-
-            if (preg_match('/(\d+)(?:\s*)([\/])(?:\s*)(\d+)/', $ratio, $matches) !== false){
-                $computed = $matches[3] / $matches[1];
-            }
-            
-            $computed = $computed * 100;
-            $ratio    = round($computed, 3, PHP_ROUND_HALF_DOWN);
-
             return $ratio;
         },
     ),

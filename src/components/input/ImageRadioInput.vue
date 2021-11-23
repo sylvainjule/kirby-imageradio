@@ -33,8 +33,8 @@ export default {
     },
     computed: {
         padding() {
-            return 'padding-top:'+ this.ratio + '%;'
-        }
+            return 'padding-top:'+ this.$helper.ratio(this.ratio, 'auto', false)
+        },
     }
 }
 </script>
