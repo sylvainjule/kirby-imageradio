@@ -83,7 +83,7 @@
 	  	}
   		> div {
   			position: relative;
-  			padding: (($field-input-height - $field-input-line-height) / 2) $field-input-padding;
+  			padding: calc((($field-input-height - $field-input-line-height) / 2)) $field-input-padding;
   			padding-left: 2.25rem;
 	  		min-height: $field-input-height;
 	  		line-height: $field-input-line-height;
@@ -98,7 +98,7 @@
 			    border: 2px solid $color-light-grey;
 			    box-shadow: $color-white 0 0 0 2px inset;
 
-		  		top: ($field-input-height - 1rem) / 2;
+		  		top: calc(($field-input-height - 1rem) / 2);
 		  		left: $field-input-padding;
 		  		margin-top: -1px;
 			}
@@ -122,7 +122,7 @@
   		font-size: $font-size-small;
   		color: $color-dark-grey;
   		line-height: $field-input-line-height;
-  		padding-top: $field-input-line-height / 10;
+  		padding-top: calc($field-input-line-height / 10);
 	}
 
 	.k-radio-input .k-icon {

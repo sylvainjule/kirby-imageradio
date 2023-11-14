@@ -19,6 +19,9 @@ $base = array_merge_recursive($base, array(
         'fit' => function($fit = 'cover') {
             return $fit;
         },
+        'back' => function($back = false) {
+            return $back;
+        },
         'gap' => function($gap = false) {
             return $gap;
         },

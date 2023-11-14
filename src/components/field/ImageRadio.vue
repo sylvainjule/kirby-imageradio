@@ -12,6 +12,7 @@ export default {
         gap: Boolean,
         mobile: Boolean,
         ratio: Number,
+        back: [Boolean, String],
     }
 }
 </script>

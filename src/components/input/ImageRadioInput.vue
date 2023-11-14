@@ -6,7 +6,7 @@
                 <figure :class="['k-radio-image-ctn', {'mobile-show': mobile}]">
                     <figure class="k-radio-image" :style="padding">
                         <img :src="option.image" :class="fit" alt="">
-                        <div class="background"></div>
+                        <div class="background" :style="background"></div>
                     </figure>
                 </figure>
                 <div>
@@ -30,10 +30,14 @@ export default {
         fit: String,
         ratio: Number,
         mobile: Boolean,
+        back: [Boolean, String],
     },
     computed: {
         padding() {
-            return 'padding-top:'+ this.$helper.ratio(this.ratio, 'auto', true)
+            return 'padding-top:'+ this.$helper.ratio(this.ratio, 'auto', true) + ';'
+        },
+        background() {
+            return this.back ? 'background:'+ this.back +';' : false
         },
     }
 }
