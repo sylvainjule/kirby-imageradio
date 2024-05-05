@@ -1,24 +1,9 @@
 <template>
-    <ul :style="'--columns:' + columns" class="k-radio-input">
-        <li v-for="(option, index) in options" :key="index">
-            <input :id="id + '-' + index" :value="option.value" :name="id" :checked="value === option.value" type="radio" class="k-radio-input-native" @change="onInput(option.value)">
-            <label :for="id + '-' + index">
-                <figure :class="['k-radio-image-ctn', {'mobile-show': mobile}]">
-                    <figure class="k-radio-image" :style="padding">
-                        <img :src="option.image" :class="fit" alt="">
-                        <div class="background" :style="background"></div>
-                    </figure>
-                </figure>
-                <div>
-                    <template v-if="option.info">
-                        <span class="k-radio-input-text">{{ option.text }}</span>
-                        <span class="k-radio-input-info">{{ option.info }}</span>
-                    </template>
-                    <template v-else>
-                        {{ option.text }}
-                    </template>
-                </div>
-            </label>
+    <ul :style="{ '--columns': columns }"
+        class="k-radio-input k-imageradio-input k-grid"
+        data-variant="choices">
+        <li v-for="(choice, index) in choices" :key="index">
+            <k-imageradio-choice-input v-bind="choice" @input="$emit('input', choice.value)" />
         </li>
     </ul>
 </template>
@@ -33,12 +18,26 @@ export default {
         back: [Boolean, String],
     },
     computed: {
-        padding() {
-            return 'padding-top:'+ this.$helper.ratio(this.ratio, 'auto', true) + ';'
-        },
-        background() {
-            return this.back ? 'background:'+ this.back +';' : false
-        },
-    }
+        choices() {
+            return this.options.map((option, index) => {
+                return {
+                    autofocus: this.autofocus && index === 0,
+                    checked: this.value === option.value,
+                    disabled: this.disabled || option.disabled,
+                    id: `${this.id}-${index}`,
+                    info: option.info,
+                    label: option.text,
+                    name: this.name ?? this.id,
+                    type: "radio",
+                    value: option.value,
+                    image: option.image,
+                    fit: this.fit,
+                    ratio: this.ratio,
+                    mobile: this.mobile,
+                    back: this.back
+                };
+            });
+        }
+    },
 }
 </script>

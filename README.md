@@ -8,7 +8,7 @@ Add illustrations to radio buttons.
 
 ## Overview
 
-> This plugin is completely free and published under the MIT license. However, if you are using it in a commercial project and want to help me keep up with maintenance, please consider [making a donation of your choice](https://www.paypal.me/sylvainjl) or purchasing your license(s) through [my affiliate link](https://a.paddle.com/v2/click/1129/36369?link=1170).
+> This plugin is completely free and published under the MIT license. However, if you are using it in a commercial project and want to help me keep up with maintenance, please consider [making a donation of your choice](https://www.paypal.me/sylvainjl).
 
 - [1. Installation](#1-installation)
 - [2. Setup](#2-setup)
@@ -23,6 +23,7 @@ Add illustrations to radio buttons.
 ## 1. Installation
 
 > If you are looking to use this field with Kirby 2, please switch to the `kirby-2` branch.
+> Kirby 3: Up to 1.0.5. Kirby 4: 2.0.0+
 
 Download and copy this repository to ```/site/plugins/imageradio```
 
@@ -141,18 +142,6 @@ By default, images are not displayed when the panel switches to its mobile view.
 myimageradio:
   type: imageradio
   mobile: false
-```
-
-#### 4.5. `gap`
-
-![gap](https://user-images.githubusercontent.com/14079751/48334057-a769b280-e659-11e8-95f8-175cbee67088.jpg)
-
-Whether the field should have a `1rem` gap between each input, K2-like. Default is `false`.
-
-```yaml
-myimageradio:
-  type: imageradio
-  gap: false
 ```
 
 <br/>

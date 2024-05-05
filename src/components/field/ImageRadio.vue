@@ -1,6 +1,7 @@
 <template>
-    <k-field v-bind="$props" :class="['k-radio-field', 'k-imageradio-field', {'has-gap': gap == true}]">
-        <k-input ref="input" :id="_uid" v-bind="$props" theme="field" v-on="$listeners" />
+    <k-field class="k-radio-field k-imageradio-field" v-bind="$props" :input="id + '-0'">
+        <k-empty v-if="!options?.length" :text="$t('options.none')" icon="checklist" />
+        <k-imageradio-input v-else ref="input" v-bind="$props" v-on="$listeners" />
     </k-field>
 </template>
 
@@ -9,12 +10,11 @@ export default {
     extends: 'k-radio-field',
     props: {
         fit: String,
-        gap: Boolean,
         mobile: Boolean,
         ratio: Number,
-        back: [Boolean, String],
+        back: [Boolean, String]
     }
-}
+};
 </script>
 
 <style lang="scss">
