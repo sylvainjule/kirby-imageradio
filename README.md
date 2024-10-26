@@ -92,7 +92,7 @@ I recommend using a `resize` number [already used](https://github.com/k-next/kir
 If you want the images to be queried from a different location than the `assets/images` folder, you can set the `baseUrl` option in your `config.php` file to whatever folder you'd like. For example:
 
 ```php
-'sylvainjule.imageradio.baseUrl' => '{{ kirby.url("assets") }}/my-custom-folder',
+'sylvainjule.imageradio.baseUrl' => 'assets/my-custom-folder',
 ```
 
 <br/>
