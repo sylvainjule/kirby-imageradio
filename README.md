@@ -22,7 +22,7 @@ Add illustrations to radio buttons.
 
 ## 1. Installation
 
-> Kirby 3: Up to 1.0.5. Kirby 4: 2.0.0+
+> Kirby 3: Up to 1.0.5. Kirby 4: 2.0.0+. Kirby 5: 2.1.0+
 
 Download and copy this repository to ```/site/plugins/imageradio```
 
