@@ -8,7 +8,7 @@ Add illustrations to radio buttons.
 
 ## Overview
 
-> This plugin is completely free and published under the MIT license. However, if you are using it in a commercial project and want to help me keep up with maintenance, please consider [making a donation of your choice](https://www.paypal.me/sylvainjl).
+> This plugin is completely free and published under the MIT license. However, if you are using it in a commercial project and want to help me keep up with maintenance, you can consider [making a donation of your choice](https://www.paypal.me/sylvainjl).
 
 - [1. Installation](#1-installation)
 - [2. Setup](#2-setup)
