@@ -8,6 +8,7 @@ class ImageRadioOptions extends \Kirby\Option\Options {
 
         // We format the correct image url here ↓
         $baseUrl = option('sylvainjule.imageradio.baseUrl') ?? kirby()->url('assets') . '/images';
+        $baseUrl = kirby()->site()->toSafeString($baseUrl);
         $baseUrl = rtrim($baseUrl, '/');
 
         foreach($items as $key => $option) {
