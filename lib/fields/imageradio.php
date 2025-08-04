@@ -4,7 +4,6 @@ namespace SylvainJule;
 
 require_once dirname(__DIR__) . '/options/imageradio-optionsapi.php';
 require_once dirname(__DIR__) . '/options/imageradio-optionsquery.php';
-require_once dirname(__DIR__) . '/options/imageradio-factory.php';
 require_once dirname(__DIR__) . '/options/imageradio-option.php';
 require_once dirname(__DIR__) . '/options/imageradio-options.php';
 require_once dirname(__DIR__) . '/options/imageradio.php';
