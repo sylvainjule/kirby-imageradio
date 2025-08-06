@@ -2,7 +2,7 @@
 
 Add illustrations to radio buttons.
 
-![cover](https://user-images.githubusercontent.com/14079751/48334055-a769b280-e659-11e8-828a-09aad54ddd9f.jpg)
+![cover](https://github.com/user-attachments/assets/279f5068-b1b9-4f9a-80b2-d41d631749a8)
 
 <br/>
 
