@@ -17,10 +17,10 @@ class ImageRadioOption extends \Kirby\Option\Option {
 		$this->text = $text ?? ['en' => $this->value];
     }
 
-    public function render(ModelWithContent $model): array
+    public function render(ModelWithContent $model, bool $safeMode = true): array
     {
         return [
-            ...parent::render($model),
+            ...parent::render($model, $safeMode),
             'image' => $this->image
         ];
     }
