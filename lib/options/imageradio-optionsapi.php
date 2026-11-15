@@ -24,7 +24,7 @@ class ImageRadioOptionsApi extends \Kirby\Option\OptionsApi {
 
     public static function factory(string|array $props): static
     {
-        if (is_string($props) === true) {
+        if(is_string($props) === true) {
             return new static(url: $props);
         }
 
@@ -43,7 +43,7 @@ class ImageRadioOptionsApi extends \Kirby\Option\OptionsApi {
     {
         // use cached options if present
         // @codeCoverageIgnoreStart
-        if ($this->options !== null) {
+        if($this->options !== null) {
             return $this->options;
         }
         // @codeCoverageIgnoreEnd
@@ -55,7 +55,7 @@ class ImageRadioOptionsApi extends \Kirby\Option\OptionsApi {
         $data = $this->load($model);
 
         // @codeCoverageIgnoreStart
-        if ($data === null) {
+        if($data === null) {
             throw new NotFoundException('Options could not be loaded from API: ' . $model->toSafeString($this->url));
         }
         // @codeCoverageIgnoreEnd
@@ -70,25 +70,25 @@ class ImageRadioOptionsApi extends \Kirby\Option\OptionsApi {
 
         // create options by resolving text and value query strings
         // for each item from the data
-        foreach ($data as $key => $item) {
+        foreach($data as $key => $item) {
             // convert simple `key: value` API data
-            if (is_string($item) === true) {
+            if(is_string($item) === true) {
                 $item = new Field(null, $key, $item);
             }
 
-            $safeMethod = $safeMode === true ? 'toSafeString' : 'toString';
+            $safeMethod = $safeMode === true ? 'toSafeHtmlString' : 'toString';
 
             $options[] = [
                 // value is always a raw string
                 'value' => $model->toString($this->value, ['item' => $item]),
                 // text is only a raw string when using {< >}
                 // or when the safe mode is explicitly disabled (select field)
-                'text' => $model->$safeMethod($this->text, ['item' => $item]),
-                'image' => $model->$safeMethod($this->image, ['item' => $item]),
+                'text'  => $model->$safeMethod($this->text, ['item' => $item]),
+                'image' => $model->toSafeString($this->image, ['item' => $item]),
             ];
         }
 
         // create Options object and render this subsequently
-        return $this->options = ImageRadioOptions::factory($options);
+        return $this->options = ImageRadioOptions::factory($options, resolve: false);
     }
 }

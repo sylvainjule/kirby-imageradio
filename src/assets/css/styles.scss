@@ -18,6 +18,7 @@
 .k-imageradio-choice-image {
 	position: relative;
 	width: 100%;
+	aspect-ratio: 1 / 1;
 	overflow: hidden;
 	background: var(--pattern);
 	border-top-left-radius: var(--input-rounded);
@@ -40,7 +41,7 @@
 	}
 
 	@media screen and (max-width: 60rem) {
-	  	&:not([data-mobile]) {
+	  	&:not([data-mobile="true"]) {
 	  		display: none;
 	  	}
 	}

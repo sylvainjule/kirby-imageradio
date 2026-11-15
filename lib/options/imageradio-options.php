@@ -12,19 +12,19 @@ class ImageRadioOptions extends \Kirby\Option\Options {
         $baseUrl = rtrim($baseUrl, '/');
 
         foreach($items as $key => $option) {
-            if (is_array($option) && isset($option['image'])) {
+            if(is_array($option) && isset($option['image'])) {
                 $image = $option['image'];
                 if(!str_starts_with($image, 'http')) {
-                    $items[$key]['image'] = $baseUrl .'/'. $image;
+                    $items[$key]['image'] = $baseUrl . '/' . $image;
                 }
             }
         }
 
-        foreach ($items as $key => $option) {
-            if (is_array($option) === false || array_key_exists('value', $option) === false) {
+        foreach($items as $key => $option) {
+            if(is_array($option) === false || array_key_exists('value', $option) === false) {
                 if(is_string($key)) {
-                    if (is_array($option)) {
-                        $option['value'] = $key;  // preserve image/text/etc., just inject value
+                    if(is_array($option)) {
+                        $option['value'] = $key;
                     } else {
                         $option = ['value' => $key, 'text' => $option];
                     }
@@ -32,7 +32,8 @@ class ImageRadioOptions extends \Kirby\Option\Options {
                     $option = ['value' => $option];
                 }
             }
-            $option = ImageRadioOption::factory($option);
+
+            $option = ImageRadioOption::factory($option, $resolve);
             $collection->__set($option->id(), $option);
         }
 

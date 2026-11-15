@@ -2,10 +2,11 @@
 
 namespace SylvainJule;
 
-class ImageRadio extends \Kirby\Field\FieldOptions {
+use Kirby\Form\FieldOptions;
 
-    public static function factory(array $props, bool $safeMode = true): static
-    {
+class ImageRadio extends FieldOptions {
+
+    public static function factory(array $props, bool $safeMode = true): static {
         $options = match ($props['type']) {
             'api'    => ImageRadioOptionsApi::factory($props),
             'query'  => ImageRadioOptionsQuery::factory($props),

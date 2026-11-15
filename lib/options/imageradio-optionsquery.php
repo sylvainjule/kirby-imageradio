@@ -24,7 +24,7 @@ class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
 
     public static function factory(string|array $props): static
     {
-        if (is_string($props) === true) {
+        if(is_string($props) === true) {
             return new static(query: $props);
         }
 
@@ -90,7 +90,7 @@ class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
     {
         // use cached options if present
         // @codeCoverageIgnoreStart
-        if ($this->options !== null) {
+        if($this->options !== null) {
             return $this->options;
         }
         // @codeCoverageIgnoreEnd
@@ -99,16 +99,16 @@ class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
         $result = $model->query($this->query);
 
         // the query already returned an options collection
-        if ($result instanceof ImageRadioOptions) {
+        if($result instanceof ImageRadioOptions) {
             return $result;
         }
 
         // convert result to a collection
-        if (is_array($result) === true) {
+        if(is_array($result) === true) {
             $result = $this->collection($result);
         }
 
-        if ($result instanceof Collection === false) {
+        if($result instanceof Collection === false) {
             $type = is_object($result) === true ? get_class($result) : gettype($result);
 
             throw new InvalidArgumentException('Invalid query result data: ' . $type);
@@ -125,13 +125,13 @@ class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
 
             // text is only a raw string when using {< >}
             // or when the safe mode is explicitly disabled (select field)
-            $safeMethod = $safeMode === true ? 'toSafeString' : 'toString';
+            $safeMethod = $safeMode === true ? 'toSafeHtmlString' : 'toString';
             $text = $model->$safeMethod($this->text ?? $text, $data);
-            $image = $model->$safeMethod($this->image ?? $image, $data);
+            $image = $model->toSafeString($this->image ?? $image, $data);
 
             return compact('text', 'value', 'image');
         });
 
-        return $this->options = ImageRadioOptions::factory($options);
+        return $this->options = ImageRadioOptions::factory($options, resolve: false);
     }
 }

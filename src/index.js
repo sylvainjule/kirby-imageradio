@@ -8,7 +8,7 @@ panel.plugin('sylvainjule/imageradio', {
         imageradio: ImageRadio,
     },
     components: {
-    	'k-imageradio-input': ImageRadioInput,
+        'k-imageradio-input': ImageRadioInput,
         'k-imageradio-choice-input': ImageRadioChoiceInput,
         'k-imageradio-field-preview': ImageRadioPreview,
     }
