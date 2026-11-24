@@ -25,13 +25,13 @@ class ImageRadioField extends RadioField {
     #[Prop(export: false)]
     protected array|string|null $api = null;
 
-    protected function fetchOptions(): array {
+    protected function fieldOptions(): FieldOptions {
         $props = FieldOptions::polyfill([
             'options' => $this->options ?? [],
             'query'   => $this->query,
             'api'     => $this->api,
         ]);
 
-        return ImageRadio::factory($props['options'])->render($this->model());
+        return ImageRadio::factory($props['options']);
     }
 }

@@ -3,7 +3,7 @@
     "description": "Add illustrations to Kirby's radio buttons",
     "type": "kirby-plugin",
     "license": "MIT",
-    "version": "3.0.0-beta.1",
+    "version": "3.0.0",
     "authors": [
         {
             "name": "Sylvain Julé",
