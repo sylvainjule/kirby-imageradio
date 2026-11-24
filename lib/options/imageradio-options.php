@@ -32,7 +32,7 @@ class ImageRadioOptions extends \Kirby\Option\Options {
                     $option = ['value' => $option];
                 }
             }
-            $option = ImageRadioOption::factory($option);
+            $option = ImageRadioOption::factory($option, $resolve);
             $collection->__set($option->id(), $option);
         }
 

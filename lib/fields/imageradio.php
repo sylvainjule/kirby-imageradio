@@ -41,11 +41,11 @@ $base = array_merge_recursive($base, array(
 
 $base = array_replace_recursive($base, array(
     'methods' => array(
-        'getOptions' => function() {
+        'getOptions' => function(array $keep = []) {
             $props   = \Kirby\Field\FieldOptions::polyfill($this->props);
             $options = ImageRadio::factory($props['options']);
 
-            return $options->render($this->model());
+            return $options->render($this->model(), $keep);
         },
     ),
 ));

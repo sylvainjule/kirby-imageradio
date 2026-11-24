@@ -12,6 +12,7 @@ use Kirby\Content\Field;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Toolkit\Collection;
 use Kirby\Toolkit\Obj;
+use Kirby\Toolkit\I18n;
 
 class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
     public function __construct(
@@ -86,11 +87,11 @@ class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
         };
     }
 
-    public function resolve(ModelWithContent $model, bool $safeMode = true): \Kirby\Option\Options
+    public function resolve(ModelWithContent $model, bool $safeMode = true, array $keep = []): \Kirby\Option\Options
     {
         // use cached options if present
         // @codeCoverageIgnoreStart
-        if ($this->options !== null) {
+        if ($this->options !== null && $keep === []) {
             return $this->options;
         }
         // @codeCoverageIgnoreEnd
@@ -115,13 +116,24 @@ class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
         }
 
         // create options array
-        $options = $result->toArray(function ($item) use ($model, $safeMode) {
+        $options = $result->toArray(function ($item) use ($model, $safeMode, $keep) {
             // get defaults based on item type
             [$alias, $text, $value] = $this->itemToDefaults($item);
             $data = ['item' => $item, $alias => $item];
 
             // value is always a raw string
             $value = $model->toString($this->value ?? $value, $data);
+
+            if(method_exists($this, 'isListable') && $this->isListable($item) === false) {
+                if(in_array($value, $keep)) {
+                    return [
+                        'text' => '[' . I18n::translate('unknown', 'unknown') . ']',
+                        'value' => $value,
+                        'image' => null
+                    ];
+                }
+                return null;
+            }
 
             // text is only a raw string when using {< >}
             // or when the safe mode is explicitly disabled (select field)
@@ -132,6 +144,11 @@ class ImageRadioOptionsQuery extends \Kirby\Option\OptionsQuery {
             return compact('text', 'value', 'image');
         });
 
-        return $this->options = ImageRadioOptions::factory($options);
+        $options = ImageRadioOptions::factory(array_filter($options), resolve: false);
+        if($keep === []) {
+            $this->options = $options;
+        }
+
+        return $options;
     }
 }

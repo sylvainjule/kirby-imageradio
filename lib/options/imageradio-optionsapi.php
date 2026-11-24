@@ -89,6 +89,6 @@ class ImageRadioOptionsApi extends \Kirby\Option\OptionsApi {
         }
 
         // create Options object and render this subsequently
-        return $this->options = ImageRadioOptions::factory($options);
+        return $this->options = ImageRadioOptions::factory($options, resolve: false);
     }
 }
